@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Vibration } from 'react-native';
 import SlotMachine from 'react-native-slot-machine';
 import RNShake from 'react-native-shake';
-// import SoundPlayer from 'react-native-sound-player'
+import Sound from 'react-native-sound'
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -18,17 +19,33 @@ export default class App extends Component<Props> {
 
   componentWillMount() {
     RNShake.addEventListener('ShakeEvent', () => {
-			// try {
-			// 	SoundPlayer.playSoundFile('shake', 'mp3')
-			// } catch (e) {
-			// 	console.log(`cannot play the sound file`, e)
-			// }
+      Vibration.vibrate(2000)
+			const shake = new Sound('shake.mp3', Sound.MAIN_BUNDLE, (error) => {
+				if (error) {
+					console.log('failed to load the sound', error);
+					return;
+				}
+        shake.play()
+        const spinning = new Sound('spinning.mp3', Sound.MAIN_BUNDLE, (error) => {
+          if (error) {
+            console.log('failed to load the sound', error);
+            return;
+          }
+          spinning.setNumberOfLoops(-1)
+          spinning.play()
+          setTimeout(() => {
+            spinning.stop()
+          }, 10000);
+        });
+			});
+
       this.slot.spinTo(4321);
     });
   }
- 
+
   componentWillUnmount() {
     RNShake.removeEventListener('ShakeEvent');
+    Vibration.cancel()
   }
 
 	render() {
@@ -39,6 +56,7 @@ export default class App extends Component<Props> {
           </View>
 						<View style={{height: 200, justifyContent: 'space-between', alignItems: 'center'}}>
               <SlotMachine
+                initialAnimation={false}
                 ref={ slot => this.slot = slot }
                 height={80}
                 width={80}
