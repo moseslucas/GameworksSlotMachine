@@ -12,7 +12,8 @@
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-shake-event": "^4.0.1",
-    "react-native-slot-machine": "^0.3.2"
+    "react-native-slot-machine": "^0.3.2",
+    "react-native-sound-player": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

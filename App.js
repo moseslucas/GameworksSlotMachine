@@ -2,18 +2,10 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import SlotMachine from 'react-native-slot-machine';
 import RNShakeEvent from 'react-native-shake-event';
+import SoundPlayer from 'react-native-sound-player'
 
 type Props = {};
 export default class App extends Component<Props> {
-  componentWillMount() {
-    RNShakeEvent.addEventListener('shake', () => {
-      this.slot.spinTo(4321);
-    });
-  }
-
-  componentWillUnmount() {
-    RNShakeEvent.removeEventListener('shake');
-  }
 	constructor(props) {
 		super(props);
     this.state = {
@@ -23,6 +15,21 @@ export default class App extends Component<Props> {
       slot3: '2351'
     };
 	}
+
+  componentWillMount() {
+    RNShakeEvent.addEventListener('shake', () => {
+			try {
+				SoundPlayer.playSoundFile('shake', 'mp3')
+			} catch (e) {
+				console.log(`cannot play the sound file`, e)
+			}
+      this.slot.spinTo(4321);
+    });
+  }
+
+  componentWillUnmount() {
+    RNShakeEvent.removeEventListener('shake');
+  }
 
 	render() {
 		const symbols = ['🍏', '🍎', '🍐', '🍊', '🍋', '🍌']; // can't use emojies in SlotMachine because some of them are comprised of 2 chars

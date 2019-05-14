@@ -4858,6 +4858,11 @@ react-native-slot-machine@^0.3.2:
   resolved "https://registry.yarnpkg.com/react-native-slot-machine/-/react-native-slot-machine-0.3.2.tgz#0d288b349a91a2e09bf2e5199934f2683f877693"
   integrity sha512-oFvoMf6nfvJ4NaZ9AjCVINX07KDyS0Iu6RKpllm2kAl+gDgWwws9hzAIG4/k3IrzgTEmNhNBS7zAIwQIDZ8R1Q==
 
+react-native-sound-player@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.7.0.tgz#9b94fdae5f8cd67fc43c69111c625440f28df401"
+  integrity sha512-d9PHaAnJHMvt+yvaVstO3phpUAM5BM+ZqluueyLJTj6MYk4PeMxES45O+rcOUSiWQl3lkZjjAW+eel1Hs7RbGA==
+
 react-native@0.59.8:
   version "0.59.8"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.8.tgz#ade4141c777c60f5ec4889d9811d0f80a9d56547"
