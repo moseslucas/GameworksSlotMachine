@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import SlotMachine from 'react-native-slot-machine';
-import RNShakeEvent from 'react-native-shake-event';
-import SoundPlayer from 'react-native-sound-player'
+import RNShake from 'react-native-shake';
+// import SoundPlayer from 'react-native-sound-player'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -17,18 +17,18 @@ export default class App extends Component<Props> {
 	}
 
   componentWillMount() {
-    RNShakeEvent.addEventListener('shake', () => {
-			try {
-				SoundPlayer.playSoundFile('shake', 'mp3')
-			} catch (e) {
-				console.log(`cannot play the sound file`, e)
-			}
+    RNShake.addEventListener('ShakeEvent', () => {
+			// try {
+			// 	SoundPlayer.playSoundFile('shake', 'mp3')
+			// } catch (e) {
+			// 	console.log(`cannot play the sound file`, e)
+			// }
       this.slot.spinTo(4321);
     });
   }
-
+ 
   componentWillUnmount() {
-    RNShakeEvent.removeEventListener('shake');
+    RNShake.removeEventListener('ShakeEvent');
   }
 
 	render() {
