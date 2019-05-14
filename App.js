@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import SlotMachine from 'react-native-slot-machine';
+import RNShakeEvent from 'react-native-shake-event';
 
 type Props = {};
 export default class App extends Component<Props> {
+  componentWillMount() {
+    RNShakeEvent.addEventListener('shake', () => {
+      this.slot.spinTo(4321);
+    });
+  }
+
+  componentWillUnmount() {
+    RNShakeEvent.removeEventListener('shake');
+  }
 	constructor(props) {
 		super(props);
     this.state = {
@@ -22,6 +32,7 @@ export default class App extends Component<Props> {
           </View>
 						<View style={{height: 200, justifyContent: 'space-between', alignItems: 'center'}}>
               <SlotMachine
+                ref={ slot => this.slot = slot }
                 height={80}
                 width={80}
                 text={this.state.slot3}
