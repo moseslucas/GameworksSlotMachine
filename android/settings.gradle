@@ -1,0 +1,3 @@
+rootProject.name = 'GameworksSlotMachine'
+
+include ':app'
